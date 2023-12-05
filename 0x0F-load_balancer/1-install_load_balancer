@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # A script to install and configure Hproxy
 sudo apt-get -y update
-sudo apt-get -y install haproxy=1.6.\*
+sudo apt-get -y install haproxy
 echo "
 frontend 3.85.175.48
 	bind *:80
