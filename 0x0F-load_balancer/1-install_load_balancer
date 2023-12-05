@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# A script to install and configure Hproxy
+sudo apt-get -y update
+sudo apt-get -y install haproxy=1.6.\*
+echo "
+frontend 3.85.175.48
+	bind *:80
+	default_backend web_servs
+
+backend web_servs
+	balance roundrobin
+	server 372892-web-01 3.90.85.49:80 check
+	server 372892-web-02 100.26.158.129:80 check
+" >> /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
