@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# A bash script that will display information about subdomains
+
+info_domain() {
+	record_type=$(dig "$1.$2" | awk '/ANSWER SECTION:/ {getline; print $4}')
+	destination=$(dig "$1.$2" | awk '/ANSWER SECTION:/ {getline; print $5}')
+	echo "The subdomain $1 is a $record_type record and points to $destination"
+}
+
+mod_domain() {
+	local subdomain="${2:-www lb-01 web-01 web-02}"
+
+	for subd in $subdomain; do
+		info_domain "$subd" "$1"
+	done
+}
+
+if [ "$#" == 1 ]; then
+	mod_domain "$1"
+elif [ "$#" == 2 ]; then
+	info_domain "$2" "$1"
+else
+	echo "Usage: $0 <domain> [<subdomain>]"
+	exit 1
+fi
