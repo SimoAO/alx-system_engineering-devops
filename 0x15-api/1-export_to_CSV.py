@@ -13,13 +13,9 @@ if __name__ == '__main__':
     user_url = url + 'users/{}'.format(u_id)
     info = requests.get(user_url).json()
     name = info.get('username')
-    todo_url = url + 'todos'
+    todo_url = url + 'users/todos' + u_id
     todos = requests.get(todo_url).json()
 
     with open('{}.csv'.format(u_id), 'w', newline='') as file:
-        csv_w = csv.writer(file)
-
         for todo in todos:
-            csv_w.writerow([
-                u_id, name, todo.get('completed'), todo.get('title')
-                ])
+            file.write('"{}","{}","{}","{}"\n'.format(u_id, name, todo.get('completed'), todo.get('title')))
