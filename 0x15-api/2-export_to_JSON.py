@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ TO DO list information/progress module """
+import json
 import requests
 import sys
-import json
 
 
 if __name__ == '__main__':
@@ -18,9 +18,10 @@ if __name__ == '__main__':
     list_todos = []
 
     for todo in todos:
-        todos_dict = {"task": todo.get('title'),
-            "completed": todo.get('completed'),
-            "username": name}
+        todos_dict = {
+                "task": todo.get('title'),
+                "completed": todo.get('completed'),
+                "username": name}
         list_todos.append(todos_dict)
         dictt = {u_id: list_todos}
     with open('{}.json'.format(u_id), 'w') as file:
