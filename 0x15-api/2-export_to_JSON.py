@@ -13,14 +13,15 @@ if __name__ == '__main__':
     user_url = url + 'users/{}'.format(u_id)
     info = requests.get(user_url).json()
     name = info.get('username')
-    u_json = {}
     todo_url = url + 'todos'
     todos = requests.get(todo_url).json()
-    dictt = {u_id: []}
+    list_todos = []
 
     for todo in todos:
-        dictt[u_id].append({"task": todo.get('title'),
+        todos_dict = {"task": todo.get('title'),
             "completed": todo.get('completed'),
-            "username": name})
+            "username": name}
+        list_todos.append(todos_dict)
+        dictt = {u_id: list_todos}
     with open('{}.json'.format(u_id), 'w') as file:
         json.dump(dictt, file)
