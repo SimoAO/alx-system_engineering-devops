@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# A script that generates a mysql dump and creates a compressed arch
+
+mysqldump -u root -p"$1" --all-databases > backup.sql
+tar -zcvf "$(date '+%d-%m-%Y').tar.gz" backup.sql
