@@ -25,7 +25,7 @@ if __name__ == '__main__':
                 todo_comp += 1
                 tot_comp.append(todo.get('title'))
 
-    print('Employee {} is done with tasks({}/{}):'
-            .format(name, todo_comp, todo_tot))
+    print('Employee {} is done with tasks({}/{}):'.format(
+        name, todo_comp, todo_tot))
     for task in tot_comp:
         print('\t {}'.format(task))
