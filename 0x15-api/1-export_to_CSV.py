@@ -15,7 +15,7 @@ if __name__ == '__main__':
     todo_url = url + 'todos'
     todos = requests.get(todo_url).json()
 
-    with open('{}.csv'.format(u_id), 'w+') as file:
+    with open('{}.csv'.format(u_id), 'w') as file:
         for todo in todos:
             file.write('"{}","{}","{}","{}"\n'
                     .format(u_id, name, todo.get('completed'),

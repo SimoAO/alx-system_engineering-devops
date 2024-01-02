@@ -18,9 +18,9 @@ if __name__ == '__main__':
     todos = requests.get(todo_url).json()
     dictt = {u_id: []}
 
-    with open('{}.json'.format(u_id), 'w+') as file:
-        for todo in todos:
-            dictt[u_id].append({"task": todo.get('title'),
-                "completed": todo.get('completed'),
-                "username": name})
-            json.dump(dictt, file)
+    for todo in todos:
+        dictt[u_id].append({"task": todo.get('title'),
+            "completed": todo.get('completed'),
+            "username": name})
+    with open('{}.json'.format(u_id), 'w') as file:
+        json.dump(dictt, file)
