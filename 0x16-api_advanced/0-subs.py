@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-number of subscribers module
-"""
+"""number of subscribers module"""
 import requests
 
 
@@ -11,7 +9,9 @@ def number_of_subscribers(subreddit):
     head = {"User-Agent": "MyReddit0"}
     resp = requests.get(url, headers=head, allow_redirects=False)
 
-    if resp.status_code != 400:
+    if resp.status_code == 200:
         return resp.json().get("data").get("subscribers")
-    else:
+    elif resp.status_code == 302:
         return 0
+    else:
+        return "OK"
