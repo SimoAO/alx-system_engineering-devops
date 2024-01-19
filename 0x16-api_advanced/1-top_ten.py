@@ -2,8 +2,8 @@
 """
 top ten module
 """
-import requests
 import json
+import requests
 
 
 def top_ten(subreddit):
