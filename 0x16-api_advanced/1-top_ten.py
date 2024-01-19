@@ -2,7 +2,6 @@
 """
 top ten module
 """
-import json
 import requests
 
 
